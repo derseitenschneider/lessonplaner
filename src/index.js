@@ -43,12 +43,13 @@ for (let i = 0; i < (teacher.end - teacher.start) * 12; i++) {
 
 // console.table(Object.keys(slotsArr));
 
-//Abstract
-
+// ABSTRACT
+// Color blocks (number = size)
 const red = 3;
 const blue = 2;
 const green = 4;
 
+// Emtpy Object
 const clrObj = {};
 let startObj = 0;
 
@@ -58,35 +59,57 @@ for (let i = 0; i < 20; i++) {
   startObj++;
 }
 
+//Dynamic condition based on color block size
+
+//Random Data put in object
+clrObj[0] = false;
+
+clrObj[3] = false;
+clrObj[6] = false;
 //Looping through colors
-let countRed = red;
+
+let isRedSet = false;
 for (let i = 0; i < Object.keys(clrObj).length; i++) {
-  if (clrObj[i] === undefined) {
-    if (countRed > 0) {
-      clrObj[i] = "red";
-      countRed--;
+  if (
+    clrObj[i] === undefined &&
+    clrObj[i + 1] === undefined &&
+    clrObj[i + 2] === undefined
+  ) {
+    if (!isRedSet) {
+      clrObj[i] = clrObj[i + 1] = clrObj[i + 2] = "red";
+      isRedSet = true;
     }
   }
 }
 
-let countBlue = blue;
+let isBlueSet = false;
 for (let i = 0; i < Object.keys(clrObj).length; i++) {
-  if (clrObj[i] === undefined) {
-    if (countBlue > 0) {
-      clrObj[i] = "blue";
-      countBlue--;
+  if (clrObj[i] === undefined && clrObj[i + 1] === undefined) {
+    if (!isBlueSet) {
+      clrObj[i] = clrObj[i + 1] = "blue";
+      isBlueSet = true;
     }
   }
 }
 
-let countGreen = green;
-for (let i = 0; i < Object.keys(clrObj).length; i++) {
-  if (clrObj[i] === undefined) {
-    if (countGreen > 0) {
-      clrObj[i] = "green";
-      countGreen--;
-    }
-  }
-}
+// let countBlue = blue;
+// for (let i = 0; i < Object.keys(clrObj).length; i++) {
+//   if (clrObj[i] === undefined && clrObj[i + 1] === undefined) {
+//     if (countBlue > 0) {
+//       clrObj[i] = "blue";
+//       countBlue--;
+//     }
+//   }
+// }
+
+// let countGreen = green;
+// for (let i = 0; i < Object.keys(clrObj).length; i++) {
+//   if (clrObj[i] === undefined) {
+//     if (countGreen > 0) {
+//       clrObj[i] = "green";
+//       countGreen--;
+//     }
+//   }
+// }
 
 console.table(clrObj);
